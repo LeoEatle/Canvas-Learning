@@ -1,0 +1,29 @@
+<canvas id="canvas" width="500" height="500" style="background:#000009;">
+     your browser not support canvas!
+ </canvas>
+ <script src="./js/utils.js"></script>
+ <script src="./js/ball.js"></script>
+ <script>
+     window.onload = function(){
+         var canvas = document.getElementById("canvas");
+         var context = canvas.getContext("2d");
+
+         var ball = new Ball();
+         	   ball.x = canvas.width/2;
+         	   ball.y = canvas.height/2;
+
+         var angle = 0,
+             range = 50; //振幅
+
+         (function drawFram(){
+             window.requestAnimationFrame(drawFram,canvas);
+             context.clearRect(0,0,canvas.width,canvas.height);
+
+             ball.x = canvas.width/2 + Math.sin(angle)*range; //核心
+             //这里range就是振幅
+             angle += 0.1;
+
+             ball.draw(context);
+         })();
+     }
+  </script>
